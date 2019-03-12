@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Text, SafeAreaView, TouchableOpacity } from 'react-native'
+import { Text, View, SafeAreaView,Image, TouchableOpacity, StyleSheet, AppRegistry} from 'react-native';
 
 export default class DetailsContainer extends Component {
     gotoHome = () => {
@@ -7,12 +7,33 @@ export default class DetailsContainer extends Component {
     }
   render() {
     return (
-      <SafeAreaView>
-        <Text> DetailsContainer </Text>
-        <TouchableOpacity onPress={this.gotoHome}>
-            <Text style={{ color: 'white', alignSelf: 'center',height: 50, paddingHorizontal: 20, backgroundColor: 'orange'}}>BackToHome</Text>
-        </TouchableOpacity>
+      <SafeAreaView style={styles.mainContainer}>
+          <View style={styles.child1} >
+            <Image source={require('../../assets/cat.jpg')} style={{ height: 50, width: 50}}/>
+          </View>
+          <View style={styles.child2}/>
+          <View style={styles.child3}/>
       </SafeAreaView>
     )
   }
 }
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex:1,
+    flexDirection: 'row',
+  },
+  child1: {
+    flex: 0.3,
+    backgroundColor: '#f00'
+  },
+  child2: {
+    flex: 0.4,
+    backgroundColor: '#0f0'
+  },
+  child3: {
+    flex: 0.4,
+    backgroundColor: '#00f'
+  }
+});
+
+AppRegistry.registerComponent('DetailsContainer', () => DetailsContainer);
