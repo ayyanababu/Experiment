@@ -9,7 +9,7 @@ export default class DetailsContainer extends Component {
     return (
       <SafeAreaView style={styles.mainContainer}>
           <View style={styles.child1} >
-            <Image source={require('../../assets/cat.jpg')} style={{ height: 50, width: 50}}/>
+            <Image source={require('../../assets/cat.jpg')} style={{ height: 60, width: 50}}/>
           </View>
           <View style={styles.child2}/>
           <View style={styles.child3}/>
