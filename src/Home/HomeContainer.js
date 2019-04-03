@@ -9,6 +9,8 @@ import {
     Dimensions,
     ScrollView,
   } from 'react-native'
+import { connect } from 'react-redux';
+import HomeActions from '../redux/Actions/HomeActions';
 
 const { width } = Dimensions.get('window');
 
@@ -36,7 +38,7 @@ const styles = StyleSheet.create({
   }
 })
 
-export default class HomeContainer extends Component {
+class HomeContainer extends Component {
 
   constructor(props){
     super(props);
@@ -52,6 +54,8 @@ export default class HomeContainer extends Component {
 
 
   onChangeOfText = (value) => {
+    const { addTypedTodo } = this.props;
+    addTypedTodo(value);
     this.setState({
       typedTodo: value
     })
@@ -93,6 +97,7 @@ export default class HomeContainer extends Component {
     })
   }
 
+
   renderListOfTodos = () => {
      return (
         <ScrollView>
@@ -110,3 +115,22 @@ export default class HomeContainer extends Component {
     )
   }
 }
+
+const mapStateToProps = state => {
+  // getting data form redux to screen
+  const { home } = state;
+  const { currentTodo, listOfTodos } = home;
+  return {
+    currentTodo, listOfTodos
+  }
+};
+
+const mapDispatchToProps = dispatch => ({
+  // from screen to redux communicate
+  addTypedTodo: (eachTypedValue) => {
+     dispatch(HomeActions.addTodo(eachTypedValue))
+  }
+});
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);
